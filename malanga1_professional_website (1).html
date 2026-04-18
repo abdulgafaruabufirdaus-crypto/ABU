@@ -1,0 +1,297 @@
+
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: var(--font-sans); color: var(--color-text-primary); }
+
+  .nav { display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; height: 64px; background: #0a1f5c; }
+  .nav-logo { display: flex; align-items: center; gap: 10px; }
+  .nav-logo-icon { display: flex; gap: 3px; align-items: flex-end; }
+  .nav-logo-icon span { background: #f5c800; display: block; border-radius: 2px 2px 0 0; }
+  .nav-logo-text { color: #fff; font-size: 15px; font-weight: 500; line-height: 1.2; }
+  .nav-logo-text small { display: block; background: #d32f2f; color: #fff; font-size: 10px; padding: 1px 6px; border-radius: 2px; margin-top: 3px; width: fit-content; }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a { color: rgba(255,255,255,0.75); font-size: 13px; text-decoration: none; cursor: pointer; }
+  .nav-links a:hover { color: #f5c800; }
+  .nav-cta { background: #f5c800; color: #0a1f5c; border: none; border-radius: 4px; padding: 8px 18px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+  .hero { background: linear-gradient(135deg, #0a1f5c 60%, #1a3a8c); padding: 5rem 2rem; text-align: center; }
+  .hero-tag { display: inline-block; background: #d32f2f; color: #fff; font-size: 11px; font-weight: 600; padding: 4px 14px; border-radius: 20px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 1.5rem; }
+  .hero h1 { font-size: 38px; font-weight: 600; color: #fff; margin-bottom: 1rem; letter-spacing: -0.5px; line-height: 1.2; }
+  .hero h1 span { color: #f5c800; }
+  .hero p { font-size: 16px; color: rgba(255,255,255,0.7); max-width: 560px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-gold { background: #f5c800; color: #0a1f5c; border: none; border-radius: 4px; padding: 13px 30px; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .btn-outline { background: transparent; color: #fff; border: 1.5px solid rgba(255,255,255,0.4); border-radius: 4px; padding: 13px 30px; font-size: 14px; font-weight: 500; cursor: pointer; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); background: #f5c800; }
+  .stat { padding: 1.5rem; text-align: center; border-right: 1px solid rgba(10,31,92,0.15); }
+  .stat:last-child { border-right: none; }
+  .stat-num { font-size: 28px; font-weight: 700; color: #0a1f5c; }
+  .stat-label { font-size: 11px; color: #0a1f5c; opacity: 0.7; margin-top: 3px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  .section { padding: 3.5rem 2rem; }
+  .section-header { text-align: center; margin-bottom: 2.5rem; }
+  .section-header h2 { font-size: 26px; font-weight: 600; margin-bottom: 0.5rem; }
+  .section-header p { font-size: 14px; color: var(--color-text-secondary); }
+  .section-tag { display: inline-block; background: #fff3cd; color: #0a1f5c; font-size: 11px; font-weight: 600; padding: 3px 12px; border-radius: 20px; letter-spacing: 0.5px; text-transform: uppercase; margin-bottom: 0.75rem; border: 1px solid #f5c800; }
+
+  .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .service-card { border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; padding: 1.5rem; background: var(--color-background-primary); border-top: 3px solid #0a1f5c; }
+  .service-icon { width: 40px; height: 40px; border-radius: 6px; background: #e8edf7; display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; }
+  .service-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 6px; }
+  .service-card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .why { background: var(--color-background-secondary); padding: 3.5rem 2rem; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .why-item { display: flex; gap: 12px; align-items: flex-start; }
+  .why-dot { width: 8px; height: 8px; border-radius: 50%; background: #d32f2f; flex-shrink: 0; margin-top: 6px; }
+  .why-item h4 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .why-item p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; }
+
+  .projects { padding: 3.5rem 2rem; background: var(--color-background-primary); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+  .project-card { border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; overflow: hidden; }
+  .project-img { height: 120px; display: flex; align-items: center; justify-content: center; font-size: 32px; }
+  .project-body { padding: 1rem; }
+  .project-body h3 { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+  .project-body p { font-size: 12px; color: var(--color-text-secondary); }
+  .project-badge { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; margin-top: 6px; }
+  .badge-done { background: #e6f4ea; color: #1a7a3a; }
+  .badge-ongoing { background: #fff3e0; color: #b45309; }
+
+  .testimonials { background: var(--color-background-secondary); padding: 3.5rem 2rem; }
+  .testi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+  .testi-card { background: var(--color-background-primary); border: 0.5px solid var(--color-border-tertiary); border-radius: 8px; padding: 1.25rem; }
+  .testi-stars { color: #f5c800; font-size: 14px; margin-bottom: 8px; }
+  .testi-card p { font-size: 13px; color: var(--color-text-secondary); line-height: 1.6; margin-bottom: 12px; }
+  .testi-author { display: flex; align-items: center; gap: 8px; }
+  .testi-avatar { width: 32px; height: 32px; border-radius: 50%; background: #0a1f5c; color: #f5c800; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 600; }
+  .testi-name { font-size: 13px; font-weight: 600; }
+  .testi-loc { font-size: 11px; color: var(--color-text-secondary); }
+
+  .overview { padding: 3.5rem 2rem; background: var(--color-background-primary); }
+  .overview-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; align-items: center; }
+  .overview-text h2 { font-size: 24px; font-weight: 600; margin-bottom: 1rem; }
+  .overview-text p { font-size: 14px; color: var(--color-text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+  .overview-text ul { list-style: none; }
+  .overview-text ul li { font-size: 13px; color: var(--color-text-secondary); padding: 4px 0; display: flex; gap: 8px; }
+  .overview-text ul li::before { content: '✓'; color: #0a1f5c; font-weight: 700; }
+  .overview-map { background: #e8edf7; border-radius: 8px; padding: 1.5rem; text-align: center; border: 0.5px solid var(--color-border-tertiary); }
+  .overview-map h4 { font-size: 14px; font-weight: 600; color: #0a1f5c; margin-bottom: 0.5rem; }
+  .overview-map p { font-size: 12px; color: #0a1f5c; opacity: 0.7; line-height: 1.6; }
+  .map-pin { font-size: 40px; margin-bottom: 0.5rem; }
+
+  .contact { background: #0a1f5c; padding: 3.5rem 2rem; }
+  .contact h2 { font-size: 26px; font-weight: 600; color: #fff; text-align: center; margin-bottom: 0.5rem; }
+  .contact-sub { text-align: center; color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 2.5rem; }
+  .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; max-width: 700px; margin: 0 auto; }
+  .contact-card { background: rgba(255,255,255,0.07); border: 0.5px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 1.25rem; }
+  .contact-card-label { font-size: 11px; color: #f5c800; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-bottom: 8px; }
+  .contact-card-value { font-size: 14px; color: #fff; line-height: 1.6; }
+  .contact-btn { display: block; width: fit-content; margin: 2rem auto 0; background: #f5c800; color: #0a1f5c; border: none; border-radius: 4px; padding: 14px 36px; font-size: 14px; font-weight: 700; cursor: pointer; }
+
+  .directions-btn { display: block; width: fit-content; margin: 1rem auto 0; background: transparent; color: #f5c800; border: 1.5px solid #f5c800; border-radius: 4px; padding: 10px 24px; font-size: 13px; font-weight: 600; cursor: pointer; }
+
+  .footer { background: #060f2e; padding: 1.25rem 2rem; text-align: center; font-size: 12px; color: rgba(255,255,255,0.4); }
+  .footer span { color: #f5c800; }
+</style>
+
+<h2 class="sr-only">Malanga1 Company LTD — Professional Real Estate Developer in Tamale, Ghana</h2>
+
+<div class="nav">
+  <div class="nav-logo">
+    <div class="nav-logo-icon">
+      <span style="width:6px;height:14px;"></span>
+      <span style="width:6px;height:20px;"></span>
+      <span style="width:6px;height:10px;"></span>
+    </div>
+    <div class="nav-logo-text">
+      MALANGA1 COMPANY LTD
+      <small>Real Estate · Construction</small>
+    </div>
+  </div>
+  <div class="nav-links">
+    <a onclick="document.getElementById('services').scrollIntoView({behavior:'smooth'})">Services</a>
+    <a onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Projects</a>
+    <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+    <a onclick="document.getElementById('reviews').scrollIntoView({behavior:'smooth'})">Reviews</a>
+    <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+  </div>
+  <button class="nav-cta" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Call Us</button>
+</div>
+
+<div class="hero">
+  <div class="hero-tag">Tamale's Trusted Developer</div>
+  <h1>Building <span>Excellence</span><br>Across Northern Ghana</h1>
+  <p>Malanga1 Company LTD delivers world-class real estate and construction solutions — from residential homes to commercial developments in Tamale and beyond.</p>
+  <div class="hero-btns">
+    <button class="btn-gold" onclick="document.getElementById('projects').scrollIntoView({behavior:'smooth'})">Our Projects</button>
+    <button class="btn-outline" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Get a Free Quote</button>
+  </div>
+</div>
+
+<div class="stats">
+  <div class="stat"><div class="stat-num">500+</div><div class="stat-label">Properties Built</div></div>
+  <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Years Experience</div></div>
+  <div class="stat"><div class="stat-num">1,000+</div><div class="stat-label">Happy Clients</div></div>
+  <div class="stat"><div class="stat-num">100%</div><div class="stat-label">Quality Assured</div></div>
+</div>
+
+<div class="section" id="services">
+  <div class="section-header">
+    <div class="section-tag">What we do</div>
+    <h2>Our Services</h2>
+    <p>Complete real estate and construction solutions under one roof</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M2 11L10 3L18 11V18H13V13H7V18H2V11Z" fill="#0a1f5c"/></svg></div>
+      <h3>Residential Development</h3>
+      <p>Premium homes designed for modern families with quality finishes and strategic locations across Tamale.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="3" y="5" width="14" height="12" rx="1" fill="#0a1f5c"/><rect x="7" y="9" width="3" height="3" fill="#fff"/><rect x="11" y="9" width="3" height="3" fill="#fff"/></svg></div>
+      <h3>Commercial Construction</h3>
+      <p>Office complexes, retail spaces, and commercial buildings built to international standards.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="7" fill="#0a1f5c"/><path d="M10 6v5l3 2" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <h3>Property Management</h3>
+      <p>End-to-end management ensuring your investment grows and your property is always well maintained.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 17L10 3L17 17H3Z" fill="#0a1f5c"/></svg></div>
+      <h3>Land Acquisition</h3>
+      <p>Expert guidance on land purchase, title documentation, and site development planning.</p>
+    </div>
+  </div>
+</div>
+
+<div class="projects section" id="projects" style="background: var(--color-background-secondary);">
+  <div class="section-header">
+    <div class="section-tag">Portfolio</div>
+    <h2>Our Projects</h2>
+    <p>A selection of developments we're proud of</p>
+  </div>
+  <div class="projects-grid">
+    <div class="project-card">
+      <div class="project-img" style="background:#e8edf7;">🏘️</div>
+      <div class="project-body">
+        <h3>Yapalsi Estate Phase 1</h3>
+        <p>24-unit residential estate, Tamale</p>
+        <span class="project-badge badge-done">Completed</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background:#fff3cd;">🏢</div>
+      <div class="project-body">
+        <h3>Kumbungu Commercial Hub</h3>
+        <p>Mixed-use commercial complex</p>
+        <span class="project-badge badge-done">Completed</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background:#e8f5e9;">🏗️</div>
+      <div class="project-body">
+        <h3>Northern Heights Residences</h3>
+        <p>40-unit luxury apartments</p>
+        <span class="project-badge badge-ongoing">Ongoing</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <div class="project-img" style="background:#fce4ec;">🏬</div>
+      <div class="project-body">
+        <h3>Clock Street Plaza</h3>
+        <p>Retail and office space, Tamale</p>
+        <span class="project-badge badge-ongoing">Ongoing</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="overview section" id="about">
+  <div class="overview-grid">
+    <div class="overview-text">
+      <div class="section-tag">About us</div>
+      <h2>Who We Are</h2>
+      <p>Malanga1 Company LTD 3.0 is a leading real estate developer headquartered in Tamale, Ghana. For over a decade, we have been transforming communities across the Northern Region through quality construction and thoughtful development.</p>
+      <p>We believe everyone deserves a quality home and a reliable partner in property investment.</p>
+      <ul>
+        <li>Licensed and registered real estate developer</li>
+        <li>Local expertise across Tamale and Northern Ghana</li>
+        <li>Transparent pricing with no hidden costs</li>
+        <li>Full after-sales support and property management</li>
+        <li>Strong community relationships and trusted reputation</li>
+      </ul>
+    </div>
+    <div class="overview-map">
+      <div class="map-pin">📍</div>
+      <h4>Our Office</h4>
+      <p>Clock Street<br>Behind Nobisco Senior School<br>Kumbungu Road, Tamale — Yapalsi<br><br><strong>Open Daily · Until 10:00 PM</strong><br><br>📞 053 400 7070</p>
+      <button class="btn-gold" style="margin-top:1rem; width:100%;" onclick="sendPrompt('How do I get to Malanga1 Company office in Tamale?')">Get Directions ↗</button>
+    </div>
+  </div>
+</div>
+
+<div class="testimonials section" id="reviews">
+  <div class="section-header">
+    <div class="section-tag">Reviews</div>
+    <h2>What Our Clients Say</h2>
+    <p>Over 1,000 satisfied clients across Northern Ghana</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>Malanga1 built our family home in Tamale and the quality exceeded our expectations. Professional team from start to finish.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">AK</div>
+        <div><div class="testi-name">Ama Kusi</div><div class="testi-loc">Tamale, Northern Region</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>I purchased land through Malanga1 and the documentation process was smooth and transparent. Highly recommended.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">MB</div>
+        <div><div class="testi-name">Mohammed Bawa</div><div class="testi-loc">Kumbungu, Ghana</div></div>
+      </div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <p>They manage my rental properties and I've had zero headaches. Reliable, honest, and always reachable.</p>
+      <div class="testi-author">
+        <div class="testi-avatar">FA</div>
+        <div><div class="testi-name">Fatima Alhassan</div><div class="testi-loc">Tamale, Ghana</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="contact" id="contact">
+  <h2>Ready to Build Your Future?</h2>
+  <p class="contact-sub">Contact us today — we're open daily and ready to help you find your dream property</p>
+  <div class="contact-grid">
+    <div class="contact-card">
+      <div class="contact-card-label">📞 Phone</div>
+      <div class="contact-card-value">053 400 7070</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">📍 Location</div>
+      <div class="contact-card-value">Clock Street, Behind Nobisco Senior School, Kumbungu Road, Tamale — Yapalsi</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">🕐 Hours</div>
+      <div class="contact-card-value">Open Daily<br>Until 10:00 PM</div>
+    </div>
+    <div class="contact-card">
+      <div class="contact-card-label">🗺️ Google Maps</div>
+      <div class="contact-card-value">C4RV+HJ Tamale</div>
+    </div>
+  </div>
+  <button class="contact-btn" onclick="sendPrompt('I want to book a free consultation with Malanga1 Company LTD in Tamale')">Book a Free Consultation ↗</button>
+  <button class="directions-btn" onclick="sendPrompt('Give me directions to Malanga1 Company on Clock Street Tamale near Nobisco Senior School')">Get Directions</button>
+</div>
+
+<div class="footer">
+  &copy; 2026 <span>Malanga1 Company LTD</span> · Real Estate & Construction · Tamale, Ghana · All rights reserved
+</div>
